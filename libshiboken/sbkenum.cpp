@@ -529,7 +529,9 @@ PyTypeObject* newTypeWithName(const char* name, const char* cppName)
     ::memset(type, 0, sizeof(SbkEnumType));
     Py_TYPE(type) = &SbkEnumType_Type;
     type->tp_basicsize = sizeof(SbkEnumObject);
+#ifndef IS_PY3K
     type->tp_print = &SbkEnumObject_print;
+#endif
     type->tp_repr = &SbkEnumObject_repr;
     type->tp_str = &SbkEnumObject_repr;
     type->tp_flags = Py_TPFLAGS_DEFAULT|Py_TPFLAGS_CHECKTYPES;
